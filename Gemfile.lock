@@ -1,0 +1,97 @@
+GIT
+  remote: https://github.com/sonicdes/inesita-router.git
+  revision: bf2b9db076da5f4e24470ce2730293f51b423360
+  branch: upstream_rebase
+  specs:
+    inesita-router (0.3.0)
+      inesita (~> 0.9.0)
+
+GIT
+  remote: https://github.com/sonicdes/opal-browser.git
+  revision: 55c2dd6d71b70299dd83bd688db0d4218be69e15
+  branch: upstream_master
+  specs:
+    opal-browser (0.2.0)
+      opal (>= 1.0, < 2.0)
+      paggio
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.1)
+    concurrent-ruby (1.1.7)
+    execjs (2.7.0)
+    ffi (1.13.1)
+    htmlcompressor (0.4.0)
+    inesita (0.9.2)
+      listen (~> 3.0)
+      opal (~> 1.0)
+      opal-sprockets (> 0.3)
+      opal-virtual-dom (~> 0.6.1)
+      rack-rewrite (~> 1.5)
+      thor (~> 0.19)
+    inesita-livereload (0.1.1)
+      listen (~> 3.0)
+      opal (~> 1.0)
+      websocket (~> 1.0)
+    libv8 (8.4.255.0)
+    listen (3.3.2)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
+    mini_racer (0.3.1)
+      libv8 (~> 8.4.255)
+    nio4r (2.5.4)
+    opal (1.0.3)
+      ast (>= 2.3.0)
+      parser (~> 2.6)
+    opal-sprockets (0.4.9.1.0.3.7)
+      opal (~> 1.0.0)
+      sprockets (~> 3.7)
+      tilt (>= 1.4)
+    opal-virtual-dom (0.6.1)
+      opal (> 0)
+    paggio (0.2.6)
+    parser (2.7.2.0)
+      ast (~> 2.4.1)
+    puma (5.0.4)
+      nio4r (~> 2.0)
+    rack (2.2.3)
+    rack-rewrite (1.5.1)
+    rb-fsevent (0.10.4)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
+    sass (3.7.4)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    sprockets (3.7.2)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    temple (0.8.2)
+    thor (0.20.3)
+    tilt (2.0.10)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
+    websocket (1.2.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  htmlcompressor
+  inesita
+  inesita-livereload
+  inesita-router!
+  mini_racer (>= 0.1.15)
+  opal-browser!
+  puma
+  sass
+  slim
+  uglifier
+
+BUNDLED WITH
+   2.1.2

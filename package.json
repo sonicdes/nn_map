@@ -1,0 +1,27 @@
+{
+  "name": "nn_map",
+  "version": "1.0.0",
+  "description": "```sh $ bundle install $ bundle exec inesita server ```",
+  "main": "index.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "bootstrap": "^4.4.1",
+    "leaflet": "^1.7.1",
+    "leaflet.markercluster": "^1.4.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonicdes/nn_map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonicdes/nn_map/issues"
+  },
+  "homepage": "https://github.com/sonicdes/nn_map#readme"
+}
