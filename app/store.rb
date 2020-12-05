@@ -1,15 +1,10 @@
-class Router
-  include Inesita::Router
-  CONFIG = {
-    '/login' => { hide_sidebar: true }
-  }
+class Store
+  include Inesita::Injection
 
-  def config
-    CONFIG[path] || {}
-  end
+  attr_accessor :state
 
-  def routes
-    route '/', to: Home
-    route '/map_location', to: MapLocation
+  def init
+    @storage = Browser::Storage.new(JS.global, 'global_storage')
+    @state = {}
   end
 end

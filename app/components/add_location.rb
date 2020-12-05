@@ -1,4 +1,4 @@
-class MapLocation
+class AddLocation
   include Inesita::Component
 
   def render
