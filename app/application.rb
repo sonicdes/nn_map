@@ -33,6 +33,8 @@ class Application
       attrs.merge!({onclick: -> {store.hide_dropdowns}})
     end
 
+    component Header
+
     div attrs do
       # component Sidebar unless router.config[:hide_sidebar]
       component router
@@ -52,6 +54,5 @@ Inesita::Browser.ready? do
   Application.mount_to(Inesita::Browser.body)
 end
 
-require "moment/moment"
 require "leaflet/dist/leaflet"
 require "leaflet.markercluster/dist/leaflet.markercluster"

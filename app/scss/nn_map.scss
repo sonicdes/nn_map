@@ -1,12 +1,8 @@
-// Import Custom SB Admin 2 Variables (Overrides Default Bootstrap Variables)
+// Import Custom Sass Variables
 @import "variables.scss";
 
-//Import Font-Awesome
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
-
-// Import Bootstrap
-@import "../../node_modules/bootstrap/scss/bootstrap";
+// Import PureCSS
+@import "purecss/build/pure.css";
 
 // Import Leaflet
 @import "leaflet/dist/leaflet.css";

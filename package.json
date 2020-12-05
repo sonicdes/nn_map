@@ -4,11 +4,9 @@
   "description": "```sh $ bundle install $ bundle exec inesita server ```",
   "main": "index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "bootstrap": "^4.4.1",
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
-    "moment": "^2.24.0"
+    "purecss": "^2.0.3"
   },
   "devDependencies": {},
   "scripts": {
