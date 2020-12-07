@@ -1,0 +1,11 @@
+.map-container {
+  height: 580px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.leaflet-right.leaflet-bottom .leaflet-control-attribution {
+    margin-bottom: 0;
+    margin-right: 0;
+    font-size: 10px;
+}

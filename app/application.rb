@@ -10,6 +10,7 @@ require 'browser/http'
 require 'browser/storage'
 
 require 'time'
+require 'ostruct'
 
 # require all components
 require_tree './components'
@@ -35,17 +36,9 @@ class Application
 
     component Header
 
-    div attrs do
-      # component Sidebar unless router.config[:hide_sidebar]
+    div 'class' => 'content-wrapper' do
       component router
     end
-
-    # Scroll to Top Button
-    a 'class' => 'scroll-to-top rounded', 'href' => '#page-top' do
-      i 'class' => 'fas fa-angle-up' do
-      end
-    end
-
   end
 end
 

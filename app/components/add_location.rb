@@ -1,41 +1,48 @@
 class AddLocation
   include Inesita::Component
 
-  def render
-    # Content Wrapper
-    div 'id' => 'content-wrapper', 'class' => 'd-flex flex-column' do
-      # Main Content
-      div 'id' => 'content' do
+  def hide_thanks
+    store.state[:thanks] = false
+  end
 
-        # component Topbar
-
-        # Begin Page Content
-        div 'class' => 'container-fluid' do
-          div.row do
-            div.mapid! hook: hook(:init_map) do
-
-            end
-          end
-
-          div.row do
-            a 'class' => 'btn btn-primary btn-user btn-block', onclick: -> { store.save_location } do
-              'Сохранить'
-            end
-          end
-
-        end
+  def init_map(node)
+    return if store.add_map
+    store.destroy_view_map
+    store.add_map = my_map = $$.L.map(node).setView([56.291966, 43.938446], 11)
+      .once("locationfound") do |event|
+        e = Native(`event`)
+        store.set_marker(e.latlng)
       end
-      # End of Main Content
-      # Footer
-      footer 'class' => 'sticky-footer bg-white' do
-        div 'class' => 'container my-auto' do
-          div('class' => 'copyright text-center my-auto') {
-            span.some_class 'Copyright © Kosatka 2020'
-          }
-        end
-      end
-      # End of Footer
+    my_map.on("click") do |ev|
+      click_ev = Native(`ev`)
+      store.set_marker(click_ev.latlng)
     end
-    # End of Content Wrapper
+    store.add_tile_layer(store.add_map)
+    after 0.01 do
+      my_map.invalidateSize.locate(setView: true)
+    end
+  end
+
+  def render
+    div class: "map-wrapper" do
+      div.map_container hook: hook(:init_map) do
+      end
+    end
+    div.content do
+      form class: "pure-form pure-form-stacked" do
+        textarea class: "pure-input-1", placeholder: "Описание",
+          oninput: -> (e) { store.new_location['description'] = e.target.value },
+          value: '' do
+        end
+        button class: "pure-button pure-input pure-button-primary",
+          type: "button",
+          onclick: -> {store.save_location} do
+          text "Сохранить"
+        end
+      end
+      div hidden: !store.state[:thanks], hook: hook(:hide_thanks) do
+        text "Спасибо!"
+      end
+    end
   end
 end

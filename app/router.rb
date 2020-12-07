@@ -1,7 +1,7 @@
 class Router
   include Inesita::Router
   CONFIG = {
-    '/login' => { hide_sidebar: true }
+    '/about' => { hide_map: true }
   }
 
   def config
@@ -11,5 +11,6 @@ class Router
   def routes
     route '/', to: Map
     route '/add_location', to: AddLocation
+    route '/about', to: About
   end
 end
