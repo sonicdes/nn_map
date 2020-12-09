@@ -7,13 +7,7 @@ class Map
     store.view_map = my_map = $$.L.map(node).setView([56.291966, 43.938446], 11)
     store.add_tile_layer(store.view_map)
 
-    markers = $$.L.markerClusterGroup
-    store.all_locations.each do |loc|
-      marker = $$.L.marker(loc['latlng'], {title: loc['description']})
-      marker.bindPopup loc['description']
-      markers.addLayer marker
-    end
-    store.view_map.addLayer(markers)
+    store.add_location_markers
     after 0.01 do
       my_map.invalidateSize
     end

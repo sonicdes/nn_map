@@ -5,21 +5,55 @@ class Store
 
   def init
     @storage = Browser::Storage.new(JS.global, 'global_storage')
-    @all_locations = @storage['all_locations'] || []
+    @all_locations = @storage['all_locations'] || {}
+    fetch_location_data
     @state = {}
     @location = nil
     @new_location = {'latlng' => nil, "description" => ''}
   end
 
+  def rand_str
+    [*('a'..'z'),*('0'..'9')].shuffle[0,10].join
+  end
+
+  def fetch_location_data
+    Browser::HTTP.get '/data/all_locations.json?'+rand_str do |req|
+      req.on :success do |res|
+        res.json.each do |id,loc|
+          (@all_locations[id] ||= loc).merge! loc
+        end
+        add_location_markers
+      end
+    end
+  end
+
+  def add_location_markers
+    @markers ||= $$.L.markerClusterGroup
+    store.all_locations.each do |id,loc|
+      marker = loc['marker'] || $$.L.marker(loc['latlng'], {title: loc['description']})
+      marker.unbindPopup
+      marker.bindPopup loc['description']
+      loc['marker'] = marker
+      @markers.addLayer marker unless @markers.hasLayer(marker)
+    end
+    store.view_map.addLayer(@markers) unless store.view_map.hasLayer(@markers)
+    after 0.01 do
+      store.view_map.invalidateSize
+    end
+  end
+
   def save_location
-    @all_locations.push @new_location.dup if @new_location
-    @storage['all_locations'] = @all_locations
-    @marker.remove
-    @marker = nil
-    @new_location['latlng'] = nil
-    @new_location['description'] = ''
-    @state[:thanks] = true
-    render!
+    Browser::HTTP.post("/api/problem", @new_location.to_json) do |req|
+      req.headers["Content-Type"] = "application/json"
+      req.on :success do |res|
+        @marker.remove
+        @marker = nil
+        @new_location['latlng'] = nil
+        @new_location['description'] = ''
+        @state[:thanks] = true
+        render!
+      end
+    end
   end
 
   def destroy_view_map

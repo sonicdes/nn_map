@@ -29,7 +29,7 @@ class AddLocation
       end
     end
     div.content do
-      form class: "pure-form pure-form-stacked" do
+      form class: "pure-form pure-form-stacked", hidden: store.state[:thanks] do
         textarea class: "pure-input-1", placeholder: "Описание",
           oninput: -> (e) { store.new_location['description'] = e.target.value },
           value: '' do
@@ -41,7 +41,7 @@ class AddLocation
         end
       end
       div hidden: !store.state[:thanks], hook: hook(:hide_thanks) do
-        text "Спасибо!"
+        text "Спасибо! Вместе мы сделаем наш город лучше!"
       end
     end
   end

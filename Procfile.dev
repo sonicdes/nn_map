@@ -1,0 +1,2 @@
+web: bundle e inesita server
+api: sleep 2; bundle e rerun --no-notify --quiet "bundle e puma -p $API_PORT -v api.ru"
