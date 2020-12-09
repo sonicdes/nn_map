@@ -1,6 +1,6 @@
 # initialize bundler
 require 'bundler'
-Bundler.require(:inesita)
+Bundler.require(:default)
 require 'dotenv'
 Dotenv.load
 
