@@ -17,7 +17,7 @@ class Store
   end
 
   def fetch_location_data
-    Browser::HTTP.get '/data/all_locations.json?'+rand_str do |req|
+    Browser::HTTP.get '/api/data/all_locations.json?'+rand_str do |req|
       req.on :success do |res|
         res.json.each do |id,loc|
           (@all_locations[id] ||= loc).merge! loc

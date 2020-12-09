@@ -12,7 +12,5 @@ end
 # you can comment this line to disable live-reload
 use Inesita::LiveReload
 
-use Rack::Static, :urls => ['/data']
-
 # run inesita server
 run Inesita::Server.new

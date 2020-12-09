@@ -5,6 +5,7 @@ require 'json'
 require 'dotenv'
 Dotenv.load
 
+use Rack::Static, :urls => ['/data']
 
 Airrecord.api_key = ENV['AIRTABLE_API_KEY']
 
