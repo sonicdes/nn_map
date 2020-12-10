@@ -10,7 +10,6 @@ require 'browser/http'
 require 'browser/storage'
 
 require 'time'
-require 'ostruct'
 
 # require all components
 require_tree './components'
@@ -29,11 +28,6 @@ class Application
   inject Router
 
   def render
-    attrs = {id: 'wrapper'}
-    if store.state[:dropdown_active]
-      attrs.merge!({onclick: -> {store.hide_dropdowns}})
-    end
-
     component Header
 
     div 'class' => 'content-wrapper' do

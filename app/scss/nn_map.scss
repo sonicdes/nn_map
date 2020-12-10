@@ -3,12 +3,12 @@
 @import "map.scss";
 
 // Import PureCSS
-@import "purecss/build/pure.css";
+@import "purecss/build/pure";
 
 // Import Leaflet
-@import "leaflet/dist/leaflet.css";
-@import "leaflet.markercluster/dist/MarkerCluster.css";
-@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "leaflet/dist/leaflet";
+@import "leaflet.markercluster/dist/MarkerCluster";
+@import "leaflet.markercluster/dist/MarkerCluster.Default";
 
 // Import Custom SB Admin 2 Mixins and Components
 // @import "mixins.scss";
