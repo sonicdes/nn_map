@@ -27,10 +27,20 @@ class Store
     end
   end
 
+  def default_marker(latlng, opts={})
+    icon = $$.L.icon({
+      iconUrl: '/static/images/marker.svg',
+      iconSize: [32, 32],
+      iconAnchor: [16, 30],
+      popupAnchor: [-3, -10]
+    });
+    $$.L.marker(latlng, {icon: icon}.merge(opts))
+  end
+
   def add_location_markers
     @markers ||= $$.L.markerClusterGroup
     store.all_locations.each do |id,loc|
-      marker = loc['marker'] || $$.L.marker(loc['latlng'], {title: loc['description']})
+      marker = loc['marker'] || default_marker(loc['latlng'], {title: loc['description']})
       marker.unbindPopup
       marker.bindPopup loc['description']
       loc['marker'] = marker
@@ -69,7 +79,7 @@ class Store
   end
 
   def set_marker(latlng)
-    @marker ||= $$.L.marker(latlng).addTo(add_map)
+    @marker ||= default_marker(latlng).addTo(add_map)
     @marker.setLatLng(latlng)
     @new_location['latlng'] = [latlng.lat, latlng.lng]
     add_map.invalidateSize
