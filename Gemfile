@@ -20,7 +20,8 @@ gem 'inesita-livereload'
 
 # templates gems
 gem 'slim'
-gem 'sass'
+gem 'tilt'
+gem 'sassc'
 
 # minification gems
 gem 'uglifier'
