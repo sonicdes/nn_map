@@ -1,26 +1,11 @@
-// Import Custom Sass Variables
-@import "layout.scss";
-@import "map.scss";
-
-// Import PureCSS
-@import "purecss/build/pure";
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
 
 // Import Leaflet
 @import "leaflet/dist/leaflet";
 @import "leaflet.markercluster/dist/MarkerCluster";
 @import "leaflet.markercluster/dist/MarkerCluster.Default";
 
-// Import Custom SB Admin 2 Mixins and Components
-// @import "mixins.scss";
-// @import "global.scss";
-// @import "utilities.scss";
-
-// Custom Components
-// @import "dropdowns.scss";
-// @import "navs.scss";
-// @import "buttons.scss";
-// @import "cards.scss";
-// @import "charts.scss";
-// @import "login.scss";
-// @import "error.scss";
-// @import "footer.scss";
+// Import map styles
+@import "map.scss";
+@import "extend.scss";

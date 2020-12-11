@@ -12,5 +12,8 @@ sprockets.register_engine(
   style: :compressed
 )
 
+require "autoprefixer-rails"
+AutoprefixerRails.install(sprockets)
+
 sprockets.append_path "node_modules"
 ENV['SASS_PATH']="node_modules"

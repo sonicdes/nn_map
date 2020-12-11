@@ -26,5 +26,6 @@ gem 'sassc'
 # minification gems
 gem 'uglifier'
 gem 'htmlcompressor'
+gem 'autoprefixer-rails'
 
 gem 'opal-browser', :git => 'https://github.com/sonicdes/opal-browser.git', :branch => 'upstream_master'

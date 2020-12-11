@@ -1,5 +1,6 @@
 .map-container {
-  height: 580px;
+  height: calc(100% - 50px);
+  // max-height: 70vh;
   width: 100%;
   overflow: hidden;
 }

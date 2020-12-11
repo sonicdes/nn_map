@@ -4,9 +4,9 @@
   "description": "```sh $ bundle install $ bundle exec inesita server ```",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^5.0.0-beta1",
     "leaflet": "^1.7.1",
-    "leaflet.markercluster": "^1.4.1",
-    "purecss": "^2.0.3"
+    "leaflet.markercluster": "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {

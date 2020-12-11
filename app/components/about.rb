@@ -2,6 +2,10 @@ class About
   include Inesita::Component
 
   def render
-    text "Информация о проекте"
+    div.container do
+      p do
+        "Информация о проекте"
+      end
+    end
   end
 end

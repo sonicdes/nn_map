@@ -28,9 +28,10 @@ class Application
   inject Router
 
   def render
-    component Header
+    div class: "blyadskiy-div" do
+      component Navbar
+      component Infobox unless router.config[:hide_infobox]
 
-    div 'class' => 'content-wrapper' do
       component router
     end
   end

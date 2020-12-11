@@ -1,7 +1,7 @@
 class Store
   include Inesita::Injection
-
-  attr_accessor :state, :location, :view_map, :add_map, :new_location, :all_locations, :marker
+  attr_accessor :state, :location, :view_map, :add_map,
+    :new_location, :all_locations, :marker
 
   def init
     @storage = Browser::Storage.new(JS.global, 'global_storage')
@@ -30,9 +30,9 @@ class Store
   def default_marker(latlng, opts={})
     icon = $$.L.icon({
       iconUrl: '/static/images/marker.svg',
-      iconSize: [32, 32],
-      iconAnchor: [16, 30],
-      popupAnchor: [-3, -10]
+      iconSize: [48, 48],
+      iconAnchor: [24, 30],
+      popupAnchor: [-1, -22]
     });
     $$.L.marker(latlng, {icon: icon}.merge(opts))
   end
@@ -41,11 +41,14 @@ class Store
     @markers ||= $$.L.markerClusterGroup
     store.all_locations.each do |id,loc|
       marker = loc['marker'] || default_marker(loc['latlng'], {title: loc['description']})
-      marker.unbindPopup
-      marker.bindPopup loc['description']
+      marker.on("click") do |e|
+        @location = loc
+        render!
+      end
       loc['marker'] = marker
       @markers.addLayer marker unless @markers.hasLayer(marker)
     end
+    return unless store.view_map
     store.view_map.addLayer(@markers) unless store.view_map.hasLayer(@markers)
     after 0.01 do
       store.view_map.invalidateSize
@@ -67,12 +70,16 @@ class Store
   end
 
   def destroy_view_map
-    @view_map.remove if @view_map
+    return unless @view_map
+    @view_map.remove
+    @view_map.options.removed = true
     @view_map = nil
   end
 
   def destroy_add_map
+    return unless @add_map
     @add_map.remove if @add_map
+    @add_map.options.removed = true
     @marker.remove if @marker
     @add_map = nil
     @marker = nil
@@ -81,8 +88,11 @@ class Store
   def set_marker(latlng)
     @marker ||= default_marker(latlng).addTo(add_map)
     @marker.setLatLng(latlng)
-    @new_location['latlng'] = [latlng.lat, latlng.lng]
+    unless @new_location['latlng']
+      @new_location['latlng'] = [latlng.lat, latlng.lng]
+    end
     add_map.invalidateSize
+    render!
   end
 
   def add_tile_layer(map)
