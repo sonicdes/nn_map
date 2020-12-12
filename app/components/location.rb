@@ -2,7 +2,7 @@ class Location
   include Inesita::Component
 
   def location
-    @location ||= store.all_locations[router.params[:id]]
+    store.all_locations[router.params[:id]]
   end
 
   def render

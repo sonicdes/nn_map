@@ -52,8 +52,9 @@ class App < Roda
       Problem.create(
         'Заголовок' => r.params['title'],
         'Описание' => r.params['description'],
-        'Широта' => r.params['lat'].to_f,
-        'Долгота' => r.params['lng'].to_f
+        'Дата' => Time.now.strftime("%d/%m/%Y"),
+        'Широта' => r.params['lat'],
+        'Долгота' => r.params['lng']
       )
       r.redirect "#{ENV['HOSTNAME']}/thanks_man"
     end

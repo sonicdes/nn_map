@@ -22,6 +22,7 @@ class Store
         res.json.each do |id,loc|
           (@all_locations[id] ||= loc).merge! loc
         end
+        @storage['all_locations'] = @all_locations
         add_location_markers
       end
     end
