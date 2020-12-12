@@ -5,11 +5,8 @@ require 'inesita-router'
 
 require 'browser'
 require 'browser/delay'
-require 'browser/socket'
 require 'browser/http'
 require 'browser/storage'
-
-require 'time'
 
 # require all components
 require_tree './components'
