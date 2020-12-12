@@ -1,11 +1,18 @@
 class Location
   include Inesita::Component
 
+  def location
+    @location ||= store.all_locations[router.params[:id]]
+  end
+
   def render
-    if store.location
-      text store.location['description']
-    else
-      text "Выберите метку, чтобы получить подробную информацию о проблеме."
+    div.container do
+      h2.mt_4 do
+        location['title']
+      end
+      p do
+        location['description']
+      end
     end
   end
 end

@@ -24,7 +24,11 @@ end
 scheduler = Rufus::Scheduler.new
 scheduler.every '30m' do
   data = Problem.in_progress.inject(Hash.new) do |d,prob|
-     d[prob.id] = {description: prob["Описание"], latlng: [prob["Широта"],prob["Долгота"]]}
+     d[prob.id] = {
+       title: prob["Заголовок"],
+       description: prob["Описание"],
+       latlng: [prob["Широта"],prob["Долгота"]]
+     }
      d
   end
   File.write("data/all_locations.json", data.to_json)
@@ -45,13 +49,13 @@ class App < Roda
     end
 
     r.post "problem" do
-      data = JSON.parse( request.body.read )
       Problem.create(
-        'Описание' => data['description'],
-        'Широта' => data['latlng'][0].to_f,
-        'Долгота' => data['latlng'][1].to_f
+        'Заголовок' => r.params['title'],
+        'Описание' => r.params['description'],
+        'Широта' => r.params['lat'].to_f,
+        'Долгота' => r.params['lng'].to_f
       )
-      "ОК"
+      r.redirect "#{ENV['HOSTNAME']}/thanks_man"
     end
 
   end

@@ -16,9 +16,5 @@ class Map
   def render
     div.map_container hook: hook(:init_map) do
     end
-
-    # div.content do
-    #   component Location
-    # end
   end
 end

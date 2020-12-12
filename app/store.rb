@@ -28,21 +28,28 @@ class Store
   end
 
   def default_marker(latlng, opts={})
-    icon = $$.L.icon({
-      iconUrl: '/static/images/marker.svg',
+    $$.L.marker(latlng, {icon: icon(red: opts[:red])}.merge(opts))
+  end
+
+  def icon(red: false)
+    $$.L.icon({
+      iconUrl: "/static/images/#{'red_' if red}marker.svg",
       iconSize: [48, 48],
       iconAnchor: [24, 30],
       popupAnchor: [-1, -22]
     });
-    $$.L.marker(latlng, {icon: icon}.merge(opts))
   end
 
   def add_location_markers
     @markers ||= $$.L.markerClusterGroup
     store.all_locations.each do |id,loc|
-      marker = loc['marker'] || default_marker(loc['latlng'], {title: loc['description']})
+      opts =  {title: loc['description'] }
+      opts.merge!(red: true) if location && id == location[:id]
+      marker = loc['marker'] || default_marker(loc['latlng'], opts)
       marker.on("click") do |e|
-        @location = loc
+        @location['marker'].setIcon(icon) if @location
+        @location = loc.merge(id: id)
+        marker.setIcon( icon(red: true) )
         render!
       end
       loc['marker'] = marker

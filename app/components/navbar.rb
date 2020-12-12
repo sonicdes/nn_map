@@ -15,24 +15,5 @@ class Navbar
         end
       end
     end
-
-
-
-    # nav  do
-    #   a.brand 'href' => '/' do
-    #     span  do
-    #       'NN Map'
-    #     end
-    #   end
-    #   div 'class' => 'menu' do
-    #     a 'href' => '/add_location', 'class' => 'button' do
-    #       'Создать метку'
-    #     end
-    #     a 'href' => '/about', 'class' => 'pseudo button' do
-    #       'О проекте'
-    #     end
-    #   end
-    # end
-
   end
 end

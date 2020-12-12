@@ -17,9 +17,9 @@ class Infobox
       when '/'
         if store.location
           p do
-            store.location['description']
+            store.location['title']
           end
-          button type: "button", class: "btn btn-primary" do
+          a class: "btn btn-primary", href: router.url_for('/location/:id', {id: store.location[:id]}) do
             "Узнать подробнее"
           end
         else
@@ -27,7 +27,7 @@ class Infobox
         end
       when '/add_location'
         if store.new_location['latlng']
-          button type: "button", class: "btn btn-primary" do
+          a class: "btn btn-primary", href: '/location_form' do
             "Добавить проблему"
           end
         else

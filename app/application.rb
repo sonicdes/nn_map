@@ -30,7 +30,7 @@ class Application
   def render
     div class: "blyadskiy-div" do
       component Navbar
-      component Infobox unless router.config[:hide_infobox]
+      component Infobox if router.config[:show_infobox]
 
       component router
     end
